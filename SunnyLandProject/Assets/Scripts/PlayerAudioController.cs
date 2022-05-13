@@ -14,7 +14,9 @@ public class PlayerAudioController : MonoBehaviour
     bool isJumping = false;
     // make sure to keep track of the movement as well !
     bool isMoving = false;
-   
+
+    float jumpingPitch = 1.0f;
+    float landingPitch = 1.0f;
 
     Rigidbody2D rb; // note the "2D" prefix 
 
@@ -66,6 +68,15 @@ public class PlayerAudioController : MonoBehaviour
     
     // trigger your landing sound here !
     public void OnLanding() {
+
+        int randomnumber = Random.Range(0, 100);
+        float randomModifier = Random.Range(0.1f, 1.9f);
+        float finalPitch = landingPitch * randomModifier;
+
+        if (randomnumber < 50)
+        {
+           landing.pitch = finalPitch;
+        }
         
         isJumping = false; 
         landing.Play();
@@ -83,7 +94,15 @@ public class PlayerAudioController : MonoBehaviour
  
     // trigger your jumping sound here !
     public void OnJump() {
-    
+
+        int randomnumber = Random.Range(0, 100);
+        float randomModifier = Random.Range(0.1f, 1.9f);
+        float finalPitch = jumpingPitch * randomModifier;
+
+        if (randomnumber < 50)
+        {
+            jumping.pitch = finalPitch;
+        }
         isJumping = true;
         jumping.Play();
         footsteps.Stop();
