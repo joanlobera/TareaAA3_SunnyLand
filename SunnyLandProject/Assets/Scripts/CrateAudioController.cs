@@ -4,22 +4,30 @@ using UnityEngine;
 
 public class CrateAudioController : MonoBehaviour
 {
-    public AudioSource audioSourceImpact;
-    public AudioSource audioSourceRumble;
+    AudioSource[] allAudioSources;
+    AudioSource impact;
+    AudioSource rumble;
+    Rigidbody2D rb;
+  
     // Start is called before the first frame update
     void Start()
     {
+        allAudioSources = GetComponents<AudioSource>();
+        impact = allAudioSources[0];
+        rumble = allAudioSources[1];
+
+        rb = GetComponent<Rigidbody2D>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+      
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        audioSourceRumble.Play();
-        audioSourceImpact.Play();
+       impact.Play();
+       rumble.Play();
     }
 }
